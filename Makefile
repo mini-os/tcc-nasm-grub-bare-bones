@@ -2,6 +2,8 @@ ROOT=$(shell pwd)
 BUILD_DIR=$(ROOT)/build
 ASM=$(ROOT)/third_party/nasm/nasm
 CC=$(ROOT)/third_party/tcc/bin/i386-tcc
+GRUB=$(ROOT)/third_party/grub
+OS_NAME=mini
 
 .PHONY: all clean src third_party
 
@@ -10,15 +12,19 @@ all: src
 clean:
 	rm -rf $(BUILD_DIR)
 
-run: all
-	qemu-system-i386 -kernel $(BUILD_DIR)/kernel.bin
+iso: src verify
+	cp -r iso/**/* build
+	$(GRUB)/grub-mkrescue -o $(BUILD_DIR)/$(OS_NAME).iso $(BUILD_DIR)
 
-src:
-	mkdir -p $(BUILD_DIR)
+run: iso
+	qemu-system-i386 -cdrom $(BUILD_DIR)/$(OS_NAME).iso
+
+src: clean
+	mkdir -p $(BUILD_DIR)/boot
 	make -C src ASM=$(ASM) BUILD_DIR=$(BUILD_DIR) CC=$(CC) ROOT=$(ROOT)
 
 third_party:
 	make -C third_party
 
 verify: src
-	grub-file --is-x86-multiboot $(BUILD_DIR)/kernel.bin
+	$(GRUB)/grub-file --is-x86-multiboot $(BUILD_DIR)/boot/kernel.bin

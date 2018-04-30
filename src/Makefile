@@ -12,6 +12,7 @@ kernel:
 	$(CC) -I $(ROOT)/third_party/tcc/include -c $(C_SRCS) -o $(BUILD_DIR)/kernel.o
 
 link:
-	$(CC) -nostdlib -Wl,-Ttext,0x100000 $(BUILD_DIR)/bootloader.o $(BUILD_DIR)/kernel.o -o $(BUILD_DIR)/kernel.bin
+	$(CC) -nostdlib -Wl,-Ttext,0x100000 \
+	$(BUILD_DIR)/bootloader.o $(BUILD_DIR)/kernel.o -o $(BUILD_DIR)/boot/kernel.bin
 	#$(CC) -nostdlib -Wl,-Ttext,0x100000 -Wl,--oformat,binary -static \
 	#$(BUILD_DIR)/bootloader.o $(BUILD_DIR)/kernel.o -o $(BUILD_DIR)/kernel.bin
