@@ -3,4 +3,4 @@
 	url = git://repo.or.cz/nasm.git
 [submodule "third_party/tcc"]
 	path = third_party/tcc
-	url = https://github.com/bonobo-lang/tinycc.git
+	url = https://github.com/TinyCC/tinycc.git

@@ -1,11 +1,12 @@
-.PHONY: all
+.PHONY: all nasm tcc
 
 all: nasm tcc
 
 nasm:
 	cd nasm && sh autogen.sh
 	cd nasm && sh configure
-	make -D nasm
+	make -C nasm
 
 tcc:
-	echo "Todo"
+	cd tcc && sh configure --prefix=. --enable-cross
+	make -C tcc
