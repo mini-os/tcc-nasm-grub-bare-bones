@@ -10,3 +10,4 @@ nasm:
 tcc:
 	cd tcc && sh configure --prefix=. --enable-cross
 	make -C tcc
+	make -C tcc install
