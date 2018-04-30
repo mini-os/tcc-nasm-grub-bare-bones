@@ -4,6 +4,7 @@ ASM=$(ROOT)/third_party/nasm/nasm
 CC=$(ROOT)/third_party/tcc/bin/i386-tcc
 GRUB=$(ROOT)/third_party/grub
 OS_NAME=mini
+TARGET=i386-elf
 
 .PHONY: all clean src third_party
 
@@ -13,18 +14,20 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 iso: src verify
-	cp -r iso/**/* build
-	$(GRUB)/grub-mkrescue -o $(BUILD_DIR)/$(OS_NAME).iso $(BUILD_DIR)
+	mkdir -p build/iso/boot/grub
+	mv $(BUILD_DIR)/kernel.bin $(BUILD_DIR)/iso/boot/kernel.bin
+	cp -r iso/boot/grub/grub.cfg build/iso/boot/grub/grub.cfg
+	$(GRUB)/grub-mkrescue -o $(BUILD_DIR)/$(OS_NAME).iso $(BUILD_DIR)/iso
 
 run: src verify
-	qemu-system-i386 -kernel $(BUILD_DIR)/boot/kernel.bin
+	qemu-system-i386 -kernel $(BUILD_DIR)/kernel.bin
 
 src: clean
 	mkdir -p $(BUILD_DIR)/boot
 	make -C src ASM=$(ASM) BUILD_DIR=$(BUILD_DIR) CC=$(CC) ROOT=$(ROOT)
 
 third_party:
-	make -C third_party
+	make -C third_party CC=$(CC) ROOT=$(ROOT) TARGET=$(TARGET)
 
 verify: src
-	$(GRUB)/grub-file --is-x86-multiboot $(BUILD_DIR)/boot/kernel.bin
+	$(GRUB)/grub-file --is-x86-multiboot $(BUILD_DIR)/kernel.bin

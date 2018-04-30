@@ -4,7 +4,7 @@ all: grub nasm tcc
 
 grub:
 	cd grub && sh autogen.sh
-	cd grub && sh configure
+	cd grub && sh configure --disable-werror --prefix=$(ROOT)/third_party/grub
 	make -C grub
 
 nasm:
