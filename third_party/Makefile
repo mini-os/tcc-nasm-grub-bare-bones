@@ -1,6 +1,11 @@
-.PHONY: all nasm tcc
+.PHONY: all grub nasm tcc
 
-all: nasm tcc
+all: grub nasm tcc
+
+grub:
+	cd grub && sh autogen.sh
+	cd grub && sh configure
+	make -C grub
 
 nasm:
 	cd nasm && sh autogen.sh
