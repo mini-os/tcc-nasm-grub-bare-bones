@@ -16,8 +16,8 @@ iso: src verify
 	cp -r iso/**/* build
 	$(GRUB)/grub-mkrescue -o $(BUILD_DIR)/$(OS_NAME).iso $(BUILD_DIR)
 
-run: iso
-	qemu-system-i386 -cdrom $(BUILD_DIR)/$(OS_NAME).iso
+run: src verify
+	qemu-system-i386 -kernel $(BUILD_DIR)/boot/kernel.bin
 
 src: clean
 	mkdir -p $(BUILD_DIR)/boot
