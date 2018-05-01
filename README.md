@@ -1,6 +1,8 @@
 # mini
 Minimal, hermetic OSDev setup via NASM, TCC, and GRUB.
 
+The goal is to build a tiny build system for tiny OS'es.
+
 ## Prerequisites
 * Git
 * Any C compiler
@@ -12,7 +14,8 @@ The build is simple and takes under a minute.
 Get sources via Git:
 
 ```bash
-git submodule init --recursive
+git submodule init
+git submodule update --depth 1
 ```
 
 Build third-party libraries:
@@ -24,3 +27,6 @@ make third_party
 ## Building
 After the dependencies have been built, run `make iso` to build
 `build/mini.iso`.
+
+## Running on QEMU
+`make run`
