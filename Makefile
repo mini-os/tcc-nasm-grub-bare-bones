@@ -1,7 +1,7 @@
 ROOT=$(shell pwd)
 BUILD_DIR=$(ROOT)/build
 ASM=$(ROOT)/third_party/nasm/nasm
-CC=$(ROOT)/third_party/tcc/bin/i386-tcc
+CC=$(ROOT)/third_party/tcc/i386-tcc
 GRUB=$(ROOT)/third_party/grub
 OS_NAME=mini
 TARGET=i386-elf
@@ -24,10 +24,10 @@ run: src verify
 
 src: clean
 	mkdir -p $(BUILD_DIR)/boot
-	make -C src ASM=$(ASM) BUILD_DIR=$(BUILD_DIR) CC=$(CC) ROOT=$(ROOT)
+	$(MAKE) -C src ASM=$(ASM) BUILD_DIR=$(BUILD_DIR) CC=$(CC) ROOT=$(ROOT)
 
 third_party:
-	make -C third_party CC=$(CC) ROOT=$(ROOT) TARGET=$(TARGET)
+	$(MAKE) -C third_party ROOT=$(ROOT) TARGET=$(TARGET)
 
 verify: src
 	$(GRUB)/grub-file --is-x86-multiboot $(BUILD_DIR)/kernel.bin
