@@ -1,18 +1,24 @@
 # Real Petite Kernel
-
 Minimal, hermetic OSDev setup via NASM, TCC, and GRUB.
-
 The goal is to build a tiny build system for tiny OS'es.
 
-Eventually, I will restructure the third-party dependency
-process so that the project does not consume gigabytes of unneeded space.
+GCC cross compilers are nice, but they are large and take forever
+to build.
 
-GRUB is large. It can be deleted after installation; Git submodules
-are a naive solution to dependency management.
+This build system currently only targets x86, but eventually it can
+be ported.
+
+The best part is that the build system is maintained locally
+(in `third_party/cross`), so it doesn't conflict with existing compilers.
+
+After running `make clean`, the project should only take up about
+30MB (at least, currently).
+
+Obviously, if you add a `libc`, that will grow significantly.
 
 ## Prerequisites
 * Git
-* Any C compiler
+* Any C compiler (ideally GCC or Clang)
 * Mac users **must** install [`objconv`](http://www.agner.org/optimize/#objconv).
 The build is simple and takes under a minute.
 * Mac (Windows too?) users also **must** install [GNU `xorriso`](https://www.gnu.org/software/xorriso/).
@@ -34,7 +40,7 @@ make third_party
 
 ## Building
 After the dependencies have been built, run `make iso` to build
-`build/rpk.iso`.
+`build/$(NAME).iso`.
 
 ## Running on QEMU
 `make run`

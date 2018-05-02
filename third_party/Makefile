@@ -2,7 +2,7 @@ UNIFONT_VERSION=10.0.05
 
 .PHONY: clean all grub nasm tcc
 
-all: nasm tcc grub
+all: nasm tcc grub clean
 
 clean:
 	rm -rf grub nasm tcc build-grub unifont-$(UNIFONT_VERSION) unifont*.tar.gz
