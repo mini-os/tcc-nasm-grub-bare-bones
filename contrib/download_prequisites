@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 THIRD_PARTY=`pwd`/third_party
+UNIFONT_VERSION=10.0.05
 
 set -ex
 
@@ -17,3 +18,9 @@ tar -xvjf "$THIRD_PARTY/tcc.tar.bz2" -C "$THIRD_PARTY/tcc" --strip-components=1
 wget ftp://ftp.gnu.org/gnu/grub/grub-2.02.tar.xz -O "$THIRD_PARTY/grub.tar.xz"
 mkdir -p "$THIRD_PARTY/grub"
 tar -xvf "$THIRD_PARTY/grub.tar.xz" -C "$THIRD_PARTY/grub" --strip-components=1
+
+# Unifont
+wget http://unifoundry.com/pub/unifont-$UNIFONT_VERSION/unifont-$UNIFONT_VERSION.tar.gz -O "$THIRD_PARTY/unifont.tar.gz"
+cd "$THIRD_PARTY"
+tar xvf "$THIRD_PARTY/unifont.tar.gz"
+cd ..

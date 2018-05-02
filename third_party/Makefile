@@ -15,11 +15,9 @@ grub:
 	$(MAKE) -C grub
 	$(MAKE) -C grub install
 	mkdir -p $(PREFIX)/share/locale
-	curl -LO http://unifoundry.com/pub/unifont-$(UNIFONT_VERSION)/unifont-$(UNIFONT_VERSION).tar.gz
-	tar xf unifont-$(UNIFONT_VERSION).tar.gz
 	$(PREFIX)/bin/grub-mkfont \
 	-o $(PREFIX)/share/grub/unicode.pf2 \
-	unifont-$(UNIFONT_VERSION)/font/precompiled/unifont-$(UNIFONT_VERSION).ttf
+	unifont/font/precompiled/unifont-*.ttf
 
 nasm:
 	cd nasm && sh autogen.sh
