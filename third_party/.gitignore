@@ -4,3 +4,6 @@ cross
 *.tar.xz
 *.tar.bz2
 unifont-*
+tcc
+nasm
+grub

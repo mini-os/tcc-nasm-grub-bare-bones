@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+THIRD_PARTY=`pwd`/third_party
+
+set -ex
+
+# NASM
+wget https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.xz -O "$THIRD_PARTY/nasm.tar.xz"
+mkdir -p "$THIRD_PARTY/nasm"
+tar -xvf "$THIRD_PARTY/nasm.tar.xz" -C "$THIRD_PARTY/nasm" --strip-components=1
+
+# TCC
+wget http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.26.tar.bz2 -O "$THIRD_PARTY/tcc.tar.bz2"
+mkdir -p "$THIRD_PARTY/tcc"
+tar -xvjf "$THIRD_PARTY/tcc.tar.bz2" -C "$THIRD_PARTY/tcc" --strip-components=1
+
+# GRUB
+wget ftp://ftp.gnu.org/gnu/grub/grub-2.02.tar.xz -O "$THIRD_PARTY/grub.tar.xz"
+mkdir -p "$THIRD_PARTY/grub"
+tar -xvf "$THIRD_PARTY/grub.tar.xz" -C "$THIRD_PARTY/grub" --strip-components=1

@@ -64,8 +64,8 @@ _start:
 	; C++ features such as global constructors and exceptions will require
 	; runtime support to work as well.
 	;lgdt [gdtr] ; Load GDT register with start address of GDT
-	mov eax, cr0
-	or al, 1 ; Set (Protection enable bit in Control Register 0)
+	;mov eax, cr0
+	;or al, 1 ; Set (Protection enable bit in Control Register 0)
  
 	; Enter the high-level kernel. The ABI requires the stack is 16-byte
 	; aligned at the time of the call instruction (which afterwards pushes

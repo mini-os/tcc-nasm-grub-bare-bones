@@ -19,6 +19,7 @@ Obviously, if you add a `libc`, that will grow significantly.
 ## Prerequisites
 * Git
 * Any C compiler (ideally GCC or Clang)
+* `wget`
 * Mac users **must** install [`objconv`](http://www.agner.org/optimize/#objconv).
 The build is simple and takes under a minute.
 * Mac (Windows too?) users also **must** install [GNU `xorriso`](https://www.gnu.org/software/xorriso/).
@@ -35,6 +36,7 @@ git submodule update --depth 1
 Build third-party libraries:
 
 ```bash
+sh contrib/download_prequisites
 make third_party
 ```
 
