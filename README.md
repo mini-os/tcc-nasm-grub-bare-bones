@@ -36,7 +36,7 @@ git submodule update --depth 1
 Build third-party libraries:
 
 ```bash
-sh contrib/download_prequisites
+sh contrib/download_prerequisites
 make third_party
 ```
 
